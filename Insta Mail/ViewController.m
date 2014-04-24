@@ -14,10 +14,15 @@
 
 @implementation ViewController
 @synthesize emailPicker;
-
+@synthesize notesField;
 
 #pragma mark-
 #pragma mark Picker Datasourse Protocol
+
+-(IBAction)textFieldDoneEditing:(id)sender
+{
+    [sender resignFirstResponder];
+}
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller
          didFinishWithResult:(MFMailComposeResult)result
@@ -31,7 +36,7 @@
 
 -(IBAction)sendButtonTapped:(id)sender
 {
-    NSString *theMessenge = [NSString stringWithFormat:@"I'm %@ and feeling %@ about it", [activites_ objectAtIndex:              [emailPicker selectedRowInComponent:0]],
+    NSString *theMessenge = [NSString stringWithFormat:@"%@ I'm %@ and feeling %@ about it",notesField.text , [activites_ objectAtIndex:              [emailPicker selectedRowInComponent:0]],
                              [feelings_ objectAtIndex:[emailPicker selectedRowInComponent:1]]];
     
     NSLog(@"%@",theMessenge);
